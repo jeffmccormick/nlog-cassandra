@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CassandraNLog" targetNamespace="http://www.nlog-project.org/schemas/NLog.xsd" elementFormDefault="qualified" xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd" />
+  <xs:complexType name="Cassandra">
+    <xs:complexContent>
+      <xs:extension base="Target">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" />
+          <xs:element name="node" minOccurs="0" maxOccurs="unbounded" type="CassandraNode" />
+          <xs:element name="keyspace" minOccurs="0" maxOccurs="unbounded" type="CassandraKeyspace" />
+        </xs:choice>
+        <xs:attribute name="name" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Name of the target.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CassandraNode">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="address" minOccurs="1" maxOccurs="1" type="xs:string" />
+    </xs:choice>
+    <xs:attribute name="address" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Address of the Cassandra node.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="CassandraKeyspace">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" />
+      <xs:element name="table" minOccurs="0" maxOccurs="unbounded" type="CassandraTable" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Name of the keyspace.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="CassandraTable">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" />
+      <xs:element name="column" minOccurs="0" maxOccurs="unbounded" type="CassandraColumn" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Name of the table (columnspace).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="CassandraColumn">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" />
+      <xs:element name="layout" minOccurs="1" maxOccurs="1" type="Layout" />
+      <xs:element name="dataType" minOccurs="1" maxOccurs="1" type="System.TypeCode" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Name of the table (columnspace).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="layout" type="SimpleLayoutAttribute">
+      <xs:annotation>
+        <xs:documentation>Text to be rendered to table data.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dataType" type="System.TypeCode">
+      <xs:annotation>
+        <xs:documentation>The C# type equivalent of this column.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="System.TypeCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Boolean" />
+      <xs:enumeration value="DateTime" />
+      <xs:enumeration value="Decimal" />
+      <xs:enumeration value="Double" />
+      <xs:enumeration value="Int16" />
+      <xs:enumeration value="Int32" />
+      <xs:enumeration value="Int64" />
+      <xs:enumeration value="SByte" />
+      <xs:enumeration value="Single" />
+      <xs:enumeration value="String" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
