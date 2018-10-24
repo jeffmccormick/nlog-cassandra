@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="CassandraNLog" targetNamespace="http://www.nlog-project.org/schemas/NLog.xsd" elementFormDefault="qualified" xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd" />
+  <xs:include schemaLocation="https://www.nlog-project.org/schemas/NLog.xsd" />
   <xs:complexType name="Cassandra">
     <xs:complexContent>
       <xs:extension base="Target">
