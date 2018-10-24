@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata 
+    xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>NLog.Cassandra.Config</id>
+    <title>Cassandra NLog Configuration</title>
+    <version>$version$</version>
+    <authors>Jeff McCormick</authors>
+    <owners>Jeff McCormick</owners>
+	<copyright>Copyright (c) $year$ Jeff McCormick</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Configuration file for NLog.Cassandra.</summary>
+    <description>XML file to configure NLog to use a Cassandra database as a target.</description>
+    <language>en-US</language>
+    <projectUrl>https://github.com/jeffmccormick/nlog-cassandra</projectUrl>
+    <repository type="git" url="https://github.com/jeffmccormick/nlog-cassandra.git" />
+    <licenseUrl>https://github.com/jeffmccormick/nlog-cassandra/blob/master/LICENSE</licenseUrl>
+    <releaseNotes>NLog.Cassandra.Config $version$</releaseNotes>
+    <dependencies>
+      <dependency id="NLog.Cassandra" version="$version$" />
+    </dependencies>
+    <tags>cassandra, nlog, xml, config</tags>
+    <contentFiles>
+      <files include="**/*.*" buildAction="None" copyToOutput="true" flatten="true" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="content\**" target="contentFiles\any\any" />
+  </files>
+</package>
