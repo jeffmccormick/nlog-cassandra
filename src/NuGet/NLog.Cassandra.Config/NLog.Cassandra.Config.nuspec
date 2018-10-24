@@ -23,10 +23,17 @@
     </dependencies>
     <tags>cassandra, nlog, xml, config</tags>
     <contentFiles>
-      <files include="**/*.*" buildAction="None" copyToOutput="true" flatten="true" />
+      <files include="**/*.config" buildAction="None" copyToOutput="true" flatten="true" />
+	  <files include="**/*.xsd" buildAction="None" copyToOutput="false" flatten="true" />
     </contentFiles>
   </metadata>
   <files>
-    <file src="content\**" target="contentFiles\any\any" />
+    <!-- Latest -->
+	<file src="content\NLog.Cassandra.config" target="contentFiles\any\any\NLog.config" />
+	<file src="..\..\..\schema\NLog.Cassandra.xsd" target="contentFiles\any\any\NLog.xsd" />
+	<!-- Framework -->
+    <file src="content\NLog.Cassandra.config" target="content\NLog.config" />
+	<file src="..\..\..\schema\NLog.Cassandra.xsd" target="content\NLog.xsd" />
+	<file src="tools\**" target="tools\" />
   </files>
 </package>
