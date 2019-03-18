@@ -81,7 +81,9 @@ namespace NLog.Cassandra.Targets
 			}
 
             // Finally, if we had any exceptions, we can now throw them
-            if (exceptions.Count > 0)
+            if (exceptions.Count == 1)
+                throw exceptions[0];
+            else if (exceptions.Count > 1)
                 throw new AggregateException(exceptions);
 		}
 
