@@ -34,6 +34,8 @@ namespace NLog.Cassandra.Targets
 
 		protected override void Write(LogEventInfo logEvent)
 		{
+            var exceptions = new List<Exception>();
+
 			foreach (var keyspace in this.Keyspaces)
 			{
 				if (!this._sessions.TryGetValue(keyspace.Name, out ISession session))
@@ -47,7 +49,19 @@ namespace NLog.Cassandra.Targets
 						{
 							try
 							{
-								return Convert.ChangeType(c.Layout.Render(logEvent), c.TypeCode);
+                                if (c.TypeCode.HasValue)
+								    return Convert.ChangeType(c.Layout.Render(logEvent), c.TypeCode.Value);
+
+                                switch (c.DataType)
+                                {
+                                    case nameof(Guid):
+                                        if (Guid.TryParse(c.Layout.Render(logEvent), out var guid))
+                                            return guid;
+                                        else
+                                            return Guid.Empty;
+                                    default:
+                                        return default;
+                                }
 							}
 							catch
 							{
@@ -58,12 +72,17 @@ namespace NLog.Cassandra.Targets
 
 						session.Execute(executable);
 					}
-					catch
+					catch (Exception e)
 					{
-						// Swallow exception here so that we can try logging to other tables/keyspaces
+                        // Delay exception here so that we can try logging to other tables/keyspaces
+                        exceptions.Add(e);
 					}
 				}
 			}
+
+            // Finally, if we had any exceptions, we can now throw them
+            if (exceptions.Count > 0)
+                throw new AggregateException(exceptions);
 		}
 
 		protected override void InitializeTarget()

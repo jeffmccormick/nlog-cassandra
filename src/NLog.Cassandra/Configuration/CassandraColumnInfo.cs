@@ -14,19 +14,27 @@ namespace NLog.Cassandra.Configuration
 		[RequiredParameter]
 		public Layout Layout { get; set; }
 
-		[RequiredParameter]
+        private string _dataType;
+        [RequiredParameter]
 		public string DataType
-		{
-			get => this._typeCode.ToString();
-			set => Enum.TryParse(value, out this._typeCode);
+        {
+            get
+            {
+                if (this.TypeCode.HasValue)
+                    return this.TypeCode.Value.ToString();
+                else
+                    return this._dataType;
+            }
+            set
+            {
+                if (Enum.TryParse<TypeCode>(value, out var typeCode))
+                    this.TypeCode = typeCode;
+                else
+                    this._dataType = value;
+            }
 		}
 
-		private TypeCode _typeCode;
-		internal TypeCode TypeCode
-		{
-			get => this._typeCode;
-			set => this._typeCode = value;
-		}
+		internal TypeCode? TypeCode { get; private set; }
 
 
 	}
