@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2047
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Cassandra", "NLog.Cassandra\NLog.Cassandra.csproj", "{1342EA59-7669-4CC8-816D-B418233D31CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Cassandra", "NLog.Cassandra\NLog.Cassandra.csproj", "{1342EA59-7669-4CC8-816D-B418233D31CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F57EF094-CE77-4428-B9C0-2C54A2D7BD69}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
