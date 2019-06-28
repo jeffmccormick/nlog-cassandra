@@ -7,7 +7,7 @@
     <Version>0.2.0</Version>
     <Authors>Jeff McCormick</Authors>
     <Company />
-    <Description>A configurable NLog target using a Cassadra database.</Description>
+    <Description>A configurable NLog target using a Cassandra database.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/jeffmccormick/nlog-cassandra</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jeffmccormick/nlog-cassandra.git</RepositoryUrl>
